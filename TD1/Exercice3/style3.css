@@ -1,0 +1,85 @@
+h1 {
+	color: blue;
+}
+
+h2 {
+	text-decoration: underline;
+}
+
+p {
+	text-align: center;
+}
+
+/**** ASTUCE ****/
+/* border: solid 2px black; est équivalente à :
+/* border-style: solid;
+/* border-color: black;
+/* border-width: 2px;
+/* C'est une règle raccourci. */
+
+#part_1 p {
+	border: solid 2px black;
+	background-color: lightgrey;
+	width: 20%;
+}
+
+#part_2 p:first-child {
+	border: solid 2px red;
+	background-color: pink;
+	width: 20%;
+}
+
+#part_2 p {
+	border: solid 2px blue;
+	background-color: lightblue;
+	width: 20%;
+}
+
+#part_2 p:last-child {
+	border: solid 2px green;
+	background-color: lightgreen;
+	width: 20%;
+}
+
+/***************************/
+/* Vos modifications ici : */
+/***************************/
+
+#part_1 p {
+	/*padding: 1em 100px 10% 2cm;
+	margin: 1em 100px 10% 2cm;*/
+
+	margin-top: 20px;
+	margin-right: 30px;
+	margin-bottom: 40px;
+	margin-left: 50px;
+
+	padding-top: 20px;
+	padding-right: 30px;
+	padding-bottom: 40px;
+	padding-left: 50px;
+
+	border: solid 5px black;
+}
+
+#part_2 p {
+	/**
+	 * display: inline;
+	 * Les boites ignorent leur largeur et leur hauteur.
+	 */
+
+	/**
+ 	 * display: block;
+ 	 * Les boites prenent toute la largeur.
+ 	 */
+
+	/**
+	 * display: inline-block;
+	 * Les boites prenent la largeur nécessaire.
+	 * Si une boite ne rentre pas sur la largeur, elle va à la ligne.
+	 */
+	display: inline-block;
+
+	padding: 2em;
+	margin: 2em;
+}
