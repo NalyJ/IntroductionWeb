@@ -3,7 +3,10 @@
 /* Corps. */
 body {
 	/* Marge au contour. */
-	margin: 1.5%;
+	margin: 20px;
+
+	/* Texte blanc. */
+	color: #FFFFFF;
 
 	/* Police d'écriture. */
 	font-family: 'Montserrat', 'sans-serif';
@@ -16,13 +19,25 @@ body {
 header,
 section {
 	/* Remplissage au coutour. */
-	padding: 1.5%;
+	padding: 20px;
 
 	/* Marge en dessous. */
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 
 	/* Fond bleu clair. */
 	background-color: #3498db;
+}
+
+/* Titre de l'en-tête. */
+header h1 {
+	/* Marge nulle en haut (pour corriger l'affichage). */
+	margin-top: 0;
+}
+
+/* Titre des sections. */
+section h2 {
+	/* Marge nulle en haut (pour corriger l'affichage). */
+	margin-top: 0;
 }
 
 /**************************/
@@ -36,12 +51,11 @@ div.block,
 div.block-inside,
 div.inline-block,
 div.inline-block-inside {
-	/* Marge en dessus et en dessous. */
-	margin: 20px 0;
+	/* Largeur. */
+	width : 20%;
 
 	/* Remplissage au contour. */
-	padding: 30px 40px;
-
+	padding: 1em;
 	/* Contour solide. */
 	border: solid 2px black;
 }
@@ -53,7 +67,7 @@ div.inline-block-inside {
 /* Section des éléments inline. */
 section.inline {
 	/* Marge en dessous (pour corriger l'affichage). */
-	padding-bottom: 70px;
+	padding-bottom: 40px;
 }
 
 /* Dernier paragraphe de la section des éléments inline. */
@@ -63,28 +77,15 @@ section.inline p:last-of-type {
 }
 
 /* Eléments inline. */
-div.inline,
-div.inline-inside {
+div.inline {
 	/* Affichage inline. */
 	display: inline;
-}
 
-/* Eléments inlines sauf dernier. */
-div.inline:not(:last-child)  {
 	/* Marge à droite. */
 	margin-right: 20px;
-}
 
-/* Eléments inline extérieur. */
-div.inline {
-	/* Couleur verte. */
-	background-color: green;
-}
-
-/* Elément inline intérieur. */
-div.inline-inside {
-	/* Couleur rouge. */
-	background-color: red;
+	/* Fond rouge. */
+	background-color: #e74c3c;
 }
 
 /**************************/
@@ -92,22 +93,15 @@ div.inline-inside {
 /**************************/
 
 /* Eléments block. */
-div.block,
-div.block-inside {
+div.block {
 	/* Affichage block. */
 	display: block;
-}
 
-/* Eléments block extérieur. */
-div.block {
-	/* Couleur bleue. */
-	background-color: blue;
-}
+	/* Marge en dessous (pour corriger l'affichage). */
+	margin-bottom: 20px;
 
-/* Eléments block intérieur. */
-div.block-inside {
-	/* Couleur orange. */
-	background-color: orange;
+	/* Fond vert. */
+	background-color: #f1c40f;
 }
 
 /**************************/
@@ -115,29 +109,16 @@ div.block-inside {
 /**************************/
 
 /* Eléments inline-block. */
-div.inline-block,
-div.inline-block-inside {
+div.inline-block {
 	/* Affichage inline-block. */
 	display: inline-block;
-}
 
-/* Eléments inline-block sauf dernier. */
-div.inline-block:not(:last-child)  {
-	/* Marge à droite. */
-	margin-right: 15px;
-}
-
-/* Eléments inline-block intérieur. */
-div.inline-block {
 	/* Marge en dessous nulle (pour corriger l'affichage). */
 	margin-top: 0;
 
-	/* Couleur magenta. */
-	background-color: magenta;
-}
+	/* Marge à droite. */
+	margin-right: 15px;
 
-/* Eléments inline-block extérieur. */
-div.inline-block-inside {
-	/* Couleur jaune. */
-	background-color: yellow;
+	/* Couleur violet. */
+	background-color: #9b59b6;
 }

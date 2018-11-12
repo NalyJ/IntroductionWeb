@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+/* Corps. */
+body {
+	/* Marge au contour. */
+	margin: 20px;
+
+	/* Texte blanc. */
+	color: #FFFFFF;
+
+	/* Police d'écriture. */
+	font-family: 'Montserrat', 'sans-serif';
+
+	/* Fond bleu. */
+	background-color: #2980b9;
+}
+
+/* En-tête et sections. */
+header,
+section {
+	/* Remplissage au coutour. */
+	padding: 20px;
+
+	/* Marge en dessous. */
+	margin-bottom: 20px;
+
+	/* Fond bleu clair. */
+	background-color: #3498db;
+}
+
+/* Titre de l'en-tête. */
+header h1 {
+	/* Marge nulle en haut (pour corriger l'affichage). */
+	margin-top: 0;
+}
+
+/* Titre des sections. */
+section h2 {
+	/* Marge nulle en haut (pour corriger l'affichage). */
+	margin-top: 0;
+}
+
+/**************************/
+/*        COLONNES.       */
+/**************************/
+
+/* Première colonne. */
+#col1 {
+	/* Affichage flottant. */
+	float: left;
+
+	/* Largeur. */
+	width: 200px;
+
+	/* Contour solide. */
+	border: 2px solid blue;
+}
+
+/* Deuxième colonne. */
+#col2 {
+	/* Affichage flottant. */
+	float: left;
+
+	/* Largeur. */
+	width: 200px;
+
+	/* Marge à gauche. */
+	margin-left: 10px;
+
+	/* Contour solide. */
+	border: 2px solid black;
+}
+
+/* Troisième colonne. */
+#col3 {
+	/* Largeur minimale. */
+	min-width: 200px;
+	
+	/* Marge à gauche. */
+	margin-left: 508px;
+
+	/* Contour solide. */
+	border: 2px solid black;
+}
+
+/* Dernière colonne. */
+#suite {
+	/* Aucun flottant à droite ou à gauche. */
+	clear: both;
+}

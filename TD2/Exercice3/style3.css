@@ -18,18 +18,14 @@ body {
 /* En-tête et sections. */
 header,
 section {
+	/* Remplissage au coutour. */
+	padding: 20px;
+
 	/* Marge en dessous. */
 	margin-bottom: 20px;
 
 	/* Fond bleu clair. */
 	background-color: #3498db;
-}
-
-/* En-tête et sections. */
-header,
-section div {
-	/* Remplissage au coutour. */
-	padding: 20px;
 }
 
 /* Titre de l'en-tête. */
@@ -40,20 +36,51 @@ header h1 {
 
 /* Sections. */
 section {
-	/* Alignement à gauche. */
-	float: left;
-
-	/* Largeur de moitié de l'écran. */
-	width: 49.25%;
-}
-
-/* Sections sauf dernier. */
-section:not(:last-of-type) {
-	margin-right: 1.5%;
+	height: 250px;
 }
 
 /* Titre des sections. */
 section h2 {
 	/* Marge nulle en haut (pour corriger l'affichage). */
 	margin-top: 0;
+}
+
+/**************************/
+/*        COLONNES.       */
+/**************************/
+
+/* Première colonne. */
+#col1 {
+	/* Affichage flottant. */
+	float: left;
+
+	/* Largeur. */
+	width: 200px;
+
+	/* Contour solide. */
+	border: 2px solid blue;
+}
+
+/* Deuxième colonne. */
+#col2 {
+	/* Affichage flottant. */
+	float: left;
+
+	/* Largeur. */
+	width: 200px;
+
+	/* Marge à gauche. */
+	margin-left: 10px;
+
+	/* Contour solide. */
+	border: 2px solid black;
+}
+
+/* Troisième colonne. */
+#col3 {
+	/* Marge à gauche. */
+	margin-left: 508px;
+
+	/* Contour solide. */
+	border: 2px solid black;
 }

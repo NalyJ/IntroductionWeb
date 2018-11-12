@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+/* Corps. */
+body {
+	/* Marge au contour. */
+	margin: 20px;
+
+	/* Texte blanc. */
+	color: #FFFFFF;
+
+	/* Police d'écriture. */
+	font-family: 'Montserrat', 'sans-serif';
+
+	/* Fond bleu. */
+	background-color: #2980b9;
+}
+
+/* En-tête et sections. */
+header,
+section {
+	/* Remplissage au coutour. */
+	padding: 20px;
+
+	/* Marge en dessous. */
+	margin-bottom: 20px;
+
+	/* Fond bleu clair. */
+	background-color: #3498db;
+}
+
+/* Titre de l'en-tête. */
+header h1 {
+	/* Marge nulle en haut (pour corriger l'affichage). */
+	margin-top: 0;
+}
+
+/* Titre des sections. */
+section h2 {
+	/* Marge nulle en haut (pour corriger l'affichage). */
+	margin-top: 0;
+}
+
+/**************************/
+/*          MENU.         */
+/**************************/
+
+/* Liste du menu. */
+nav.menu > ul {
+	/* Largeur de la liste. */
+	width: 576px;
+
+	/* Marges automatiques. */
+	margin: 0 auto;
+
+}
+
+/* Eléments de la liste du menu. */
+nav.menu > ul > li {
+	/* Affichage flottant à gauche. */
+	float: left;
+
+	/* Contour solide. */
+	border: solid 1px black;
+
+	/* Supprimer les points des éléments. */
+	list-style-type: none;
+}
+
+/* Liens des élements de la liste du menu. */
+nav.menu > ul > li > a {
+	/* Largeur d'un élément. */
+	width: 150px;
+
+	/* Remplissage. */
+	padding: 20px;
+
+	/* Affichage en block. */
+	display: block;
+
+	/* Texte blanc. */
+	color: #FFFFFF;
+
+	/* Fond rouge. */
+	background-color: red;
+
+	/* Alignement du texte au centre. */
+	text-align: center;
+}
+
+/* Liens survolés des éléments de la liste du menu. */
+nav.menu > ul > li > a:hover {
+	/* Fond bleu. */
+	background-color: blue;
+}
+
+/* Section se trouvant juste après le menu. */
+nav.menu + section {
+	/* Désactiver l'affichage flottant. */
+	clear: both;
+
+	/* Affichage en inline-block pour permette l'ajout d'une marge. */
+	display: inline-block;
+
+	/* Marge en haut. */
+	margin-top: 2cm;
+}

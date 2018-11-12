@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+/* Corps. */
+body {
+	/* Marge au contour. */
+	margin: 20px;
+
+	/* Texte blanc. */
+	color: #FFFFFF;
+
+	/* Police d'écriture. */
+	font-family: 'Montserrat', 'sans-serif';
+
+	/* Fond bleu. */
+	background-color: #2980b9;
+}
+
+
+/* En-tête et sections. */
+header,
+section {
+	/* Remplissage au coutour. */
+	padding: 20px;
+
+	/* Marge en dessous. */
+	margin-bottom: 20px;
+
+	/* Fond bleu clair. */
+	background-color: #3498db;
+}
+
+/* Titre de l'en-tête. */
+header h1 {
+	/* Marge nulle en haut (pour corriger l'affichage). */
+	margin-top: 0;
+}
+
+/**************************/
+/*        COLONNES.       */
+/**************************/
+
+/* Sections à trois colonnes. */
+section.col-3 {
+	/* Taille. */
+	/* width: 100%; */
+
+	/* Taille des colonnes. */
+	/* column-width: 30%; */
+
+	/* Nombre de colonnes. */
+	column-count: 3;
+
+	/* Espacement des colonnes. */
+	column-gap: 20px;
+}
+
+/* Premier article des sections à trois colonnes. */
+section.col-3 article:first-child {
+	/* Marge en haut (pour corriger l'affichage). */
+	margin-top: -20px;
+}
+
+section.col-3 article h2 {
+	/* Alignement du texte au centre. */
+	text-align: center;
+}
+
+/* Paragraphe des articles des sections à trois colonnes. */
+section.col-3 article p {
+	/* Alignement du texte en justifié. */
+	text-align: justify;
+}

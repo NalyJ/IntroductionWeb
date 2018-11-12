@@ -6,151 +6,114 @@
 		<link rel="stylesheet" type="text/css" href="style2.css"/>
 	</head>
 	<body>
+		<!-- -->
 		<header>
 			<h1>Exercice 2</h1>
-			<p>Séries d'éléments block, inline et inline-block.</p>
+			<p>
+				Imaginez et montrez graphiquement comment une série de boîtes
+				block, inline et inline-block devraient se placer s’ils possèdent
+				une largeur inférieur à la fenêtre du navigateur et si les padding
+				haut, bas, droite et gauche sont défini à une taille égale à la
+				hauteur des polices. Les bords sont tous visibles.
+			</p>
 		</header>
 
 		<section class="inline">
-			<h2>Eléments inline</h2>
+			<h2>Eléments <i>inline</i></h2>
 
 			<p>
 				Les éléments <i>inline</i> prennent la place nécessaire à
-				l'affichage de leur contenu et ne respectent pas les marges /
-				remplissage en haut et en bas.
+				l'affichage de leur contenu et ne respectent pas les définitions
+				de marges, remplissages (en haut et en bas), largeur et hauteur.
 			</p>
 			<p>
-				Les sous-éléments <i>inline</i> obéissent à cette même logique.
-				<br/>
-				De plus, lorsque la taille de l'écran ne permet pas l'affichage
-				de l'intégralité du contenu, celui-ci est scindé. Le surplus
-				retourne à la ligne scindant ainsi l'élément <i>inline</i> en
-				deux.
-				<br/>
-				Enfin, les sous-éléments <i>inline</i> n'ont aucune marge entre
-				eux par défaut.
+				Lorsque la taille de l'écran ne permet pas l'affichage de
+				l'intégralité du contenu, celui-ci est scindé. Le surplus
+				retourne à la ligne scindant ainsi l'élément <i>inline</i>
+				en deux.
 			</p>
 
 			<div class="inline">
-				<div class="inline-inside">
-					Elément inline.
-				</div>
+				Elément inline.
 			</div>
 
 			<div class="inline">
-				<div class="inline-inside">
-					Elément inline.
-				</div>
-
-				<div class="inline-inside">
-					Elément inline.
-				</div>
+				Elément inline.
 			</div>
 
 			<div class="inline">
-				<div class="inline-inside">
-					Elément inline.
-				</div>
+				Elément inline.
+			</div>
 
-				<div class="inline-inside">
-					Elément inline.
-				</div>
-
-				<div class="inline-inside">
-					Elément inline.
-				</div>
+			<div class="inline">
+				Elément inline.
 			</div>
 		</section>
 
 		<section class="block">
-			<h2>Eléments block</h2>
+			<h2>Eléments <i>block</i></h2>
 
 			<p>
 				Les éléments <i>block</i> prennent toute la largeur de l'écran,
 				prennent une nouvelle ligne et respectent toutes les définitions
-				de marges / remplissage.
-			</p>
-
-			<p>
-				Les sous-éléments <i>block</i> obéissent à cette même logique.
-				<br>
-				De plus, notons que les sous-éléments prennent toute la largeur
-				disponible et se redimensionnent en fonction de leur parent.
-				<br/>
-				Enfin, les sous-éléments <i>block</i> n'ont aucune marge entre
-				eux par défaut.
+				de marges, remplissages, largeur, hauteur.
 			</p>
 
 			<div class="block">
-				<div class="block-inside">
-					Elément block.
-				</div>
+				Elément block.
 			</div>
 
 			<div class="block">
-				<div class="block-inside">
-					Elément block.
-				</div>
-				<div class="block-inside">
-					Elément block.
-				</div>
+				Elément block.
 			</div>
 
 			<div class="block">
-				<div class="block-inside">
-					Elément block.
-				</div>
-				<div class="block-inside">
-					Elément block.
-				</div>
-				<div class="block-inside">
-					Elément block.
-				</div>
+				Elément block.
+			</div>
+
+			<div class="block">
+				Elément block.
 			</div>
 		</section>
 
 		<section class="inline-block">
-			<h2>Eléments inline-block</h2>
+			<h2>Eléments <i>inline-block</i></h2>
 			<p>
 				Les éléments <i>inline-block</i> prennent la place nécessaire à
 				l'affichage de leur contenu et respectent toutes les définitions
-				de marge / remplissage.
+				de marges, remplissages, largeur et hauteur.
 			</p>
-			<p>
-				Les sous-éléments <i>inline-block</i> obéissent à la même logique.
-				<br/>
-				De plus, lorsque la taille de l'écran ne permet pas l'affichage
-				de tout le contenu, celui-ci n'est pas scindé. Tout l'élément
-				retourne alors à la ligne.
-				<br/>
-				Enfin, les sous-éléments <i>inline-block</i> ont par défaut une
-				petite marge entre eux.
-			</p>
+
 			<div class="inline-block">
-				<div class="inline-block-inside">
-					Elément inline-block.
-				</div>
+				Elément inline-block.
 			</div>
 
 			<div class="inline-block">
-				<div class="inline-block-inside">
-					Elément inline-block.
-				</div>
-				<div class="inline-block-inside">
-					Elément inline-block.
-				</div>
+				Elément inline-block.
 			</div>
 
 			<div class="inline-block">
-				<div class="inline-block-inside">
-					Elément inline-block.
-				</div>
-				<div class="inline-block-inside">
-					Elément inline-block.
-				</div>
-				<div class="inline-block-inside">
-					Elément inline-block.
-				</div>
+				Elément inline-block.
+			</div>
+
+			<div class="inline-block">
+				Elément inline-block.
+			</div>
+		</section>
+
+		<section>
+			<h2>Série éléments <i>inline</i>, <i>block</i>, <i>inline-block</i></h2>
+
+			<div class="block">
+				Elément block.
+			</div>
+
+			<div class="inline">
+				Elément inline.
+			</div>
+
+			<div class="inline-block">
+				Elément inline-block.
 			</div>
 		</section>
 	</body>
