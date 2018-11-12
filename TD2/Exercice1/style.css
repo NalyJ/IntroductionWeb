@@ -49,6 +49,7 @@ section {
 
 /* Sections sauf dernier. */
 section:not(:last-of-type) {
+	/* Marge à droite. */
 	margin-right: 1.5%;
 }
 
