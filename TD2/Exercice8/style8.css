@@ -44,63 +44,71 @@ section h2 {
 /*          MENU.         */
 /**************************/
 
+/* Pseudo-élément après le menu. */
+nav.menu:after {
+	/* Désactiver l'affichage flottant. */
+	clear: both;
+
+	/* Ajout d'un contenu (pour pouvoir appliquer une marge). */
+	content: '';
+
+	/* Affichage en block (pour retourner à la ligne). */
+	display: block;
+
+	/* Marge en dessous. */
+	margin-bottom: 2cm;
+}
+
 /* Liste du menu. */
 nav.menu > ul {
 	/* Largeur de la liste. */
-	width: 576px;
+	width: 570px;
 
-	/* Marges automatiques. */
+	/* Marges automatiques (pour centrer le menu). */
 	margin: 0 auto;
 
+	/* Remplissage nul (pour corriger l'affichage). */
+	padding: 0;
+
+	/* Désactiver l'affichage des points. */
+	list-style-type: none;
 }
 
 /* Eléments de la liste du menu. */
-nav.menu > ul > li {
+nav.menu li {
 	/* Affichage flottant à gauche. */
 	float: left;
 
 	/* Contour solide. */
-	border: solid 1px black;
-
-	/* Supprimer les points des éléments. */
-	list-style-type: none;
+	/*border: 1px solid black;*/
 }
 
-/* Liens des élements de la liste du menu. */
-nav.menu > ul > li > a {
-	/* Largeur d'un élément. */
+/* Liens des éléments de la liste du menu. */
+nav.menu li a {
+	/* Largeur du lien. */
 	width: 150px;
+
+	/* Affichage en block (pour un menu horizontal). */
+	display: block;
 
 	/* Remplissage. */
 	padding: 20px;
 
-	/* Affichage en block. */
-	display: block;
-
-	/* Texte blanc. */
-	color: #FFFFFF;
-
-	/* Fond rouge. */
-	background-color: red;
-
 	/* Alignement du texte au centre. */
 	text-align: center;
+
+	/* Désactiver le soulignage du texte. */
+	text-decoration: none;
+
+	/* Texte blanc; */
+	color: #ffffff;
+
+	/* Fond rouge clair. */
+	background-color: #e74c3c;
 }
 
 /* Liens survolés des éléments de la liste du menu. */
-nav.menu > ul > li > a:hover {
-	/* Fond bleu. */
-	background-color: blue;
-}
-
-/* Section se trouvant juste après le menu. */
-nav.menu + section {
-	/* Désactiver l'affichage flottant. */
-	clear: both;
-
-	/* Affichage en inline-block pour permette l'ajout d'une marge. */
-	display: inline-block;
-
-	/* Marge en haut. */
-	margin-top: 2cm;
+nav.menu li a:hover {
+	/* Fond rouge foncé. */
+	background-color: #c0392b;
 }

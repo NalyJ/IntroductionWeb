@@ -34,6 +34,10 @@ header h1 {
 	margin-top: 0;
 }
 
+section {
+	margin-left: 170px;
+}
+
 /* Titre des sections. */
 section h2 {
 	/* Marge nulle en haut (pour corriger l'affichage). */
@@ -44,74 +48,27 @@ section h2 {
 /*          MENU.         */
 /**************************/
 
-/* Pseudo-élément après le menu. */
-nav.menu:after {
-	/* Désactiver l'affichage flottant. */
-	clear: both;
-
-	/* Ajout d'un contenu (pour pouvoir appliquer une marge). */
-	content: '';
-
-	/* Affichage en block (pour retourner à la ligne). */
-	display: block;
-
-	/* Marge en dessous. */
-	margin-bottom: 2cm;
-}
-
 /* Liste du menu. */
 nav.menu > ul {
 	/* Largeur de la liste. */
-	width: 570px;
-
-	/* Marges automatiques (pour centrer le menu). */
-	margin: 0 auto;
-
-	/* Remplissage nul (pour corriger l'affichage). */
-	padding: 0;
-
-	/* Désactiver l'affichage des points. */
-	list-style-type: none;
-}
-
-/* Liste du sous-menu. */
-nav.menu ul.smenu {
-	/* Largeur de la liste. */
 	width: 150px;
 
-	/* Par défaut, désactiver l'affichage. */
-	display: none;
+	/* Position fixée. */
+	position: fixed;
 
-	/* Position absolue (pour ne pas affecter les éléments en dessous). */
-	position: absolute;
+	/* Marges nulles (pour corriger l'affichage). */
+	margin: 0;
 
 	/* Remplissage nul (pour corriger l'affichage). */
 	padding: 0;
 
 	/* Désactiver l'affichage des points. */
 	list-style-type: none;
-}
-
-nav.menu li:hover > ul.smenu {
-	/* Affichage en block. */
-	display: block;
-}
-
-/* Eléments de la liste du menu. */
-nav.menu li {
-	/* Affichage flottant à gauche. */
-	float: left;
-
-	/* Contour solide. */
-	/*border: 1px solid black;*/
 }
 
 /* Liens des éléments de la liste du menu. */
 nav.menu li a {
-	/* Largeur du lien. */
-	width: 150px;
-
-	/* Affichage en block. */
+	/* Affichage en block (pour un menu horizontal). */
 	display: block;
 
 	/* Remplissage. */
@@ -130,20 +87,8 @@ nav.menu li a {
 	background-color: #e74c3c;
 }
 
-/* Liens des éléments de la liste du sous-menu. */
-ul.smenu li a {
-	/* Fond violet clair. */
-	background-color: #9c88ff;
-}
-
 /* Liens survolés des éléments de la liste du menu. */
 nav.menu li a:hover {
 	/* Fond rouge foncé. */
 	background-color: #c0392b;
-}
-
-/* Liens survolés des éléments de la liste du sous-menu. */
-ul.smenu li a:hover {
-	/* Fond violet foncé. */
-	background-color: #8c7ae6;
 }
