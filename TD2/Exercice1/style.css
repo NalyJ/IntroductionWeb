@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+
+/* Corps. */
+body {
+	/* Marge au coutour. */
+	margin: 2.5%;
+
+	/* Police d'écriture. */
+	font-family: 'Montserrat', 'sans-serif';
+}
+
+/* En-tête et sections. */
+header,
+section {
+	/* Marge en dessous. */
+	margin-bottom: 20px;
+}
+
+/* Sections. */
+section {
+	/* Alignement à gauche. */
+	float: left;
+
+	/* Largeur de moitié de l'écran. */
+	width: 50%;
+}

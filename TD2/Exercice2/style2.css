@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+/* Corps. */
+body {
+	/* Marge au contour. */
+	margin: 1.5%;
+
+	/* Police d'écriture. */
+	font-family: 'Montserrat', 'sans-serif';
+
+	/* Fond bleu. */
+	background-color: #2980b9;
+}
+
+/* En-tête et sections. */
+header,
+section {
+	/* Remplissage au coutour. */
+	padding: 1.5%;
+
+	/* Marge en dessous. */
+	margin-bottom: 40px;
+
+	/* Fond bleu clair. */
+	background-color: #3498db;
+}
+
+/**************************/
+/*        ELEMENTS.       */
+/**************************/
+
+/* Eléments. */
+div.inline,
+div.inline-inside,
+div.block,
+div.block-inside,
+div.inline-block,
+div.inline-block-inside {
+	/* Marge en dessus et en dessous. */
+	margin: 20px 0;
+
+	/* Remplissage au contour. */
+	padding: 30px 40px;
+
+	/* Contour solide. */
+	border: solid 2px black;
+}
+
+/**************************/
+/*         INLINE.        */
+/**************************/
+
+/* Section des éléments inline. */
+section.inline {
+	/* Marge en dessous (pour corriger l'affichage). */
+	padding-bottom: 70px;
+}
+
+/* Dernier paragraphe de la section des éléments inline. */
+section.inline p:last-of-type {
+	/* Marge en dessous (pour corriger l'affichage). */
+	margin-bottom: 50px;
+}
+
+/* Eléments inline. */
+div.inline,
+div.inline-inside {
+	/* Affichage inline. */
+	display: inline;
+}
+
+/* Eléments inlines sauf dernier. */
+div.inline:not(:last-child)  {
+	/* Marge à droite. */
+	margin-right: 20px;
+}
+
+/* Eléments inline extérieur. */
+div.inline {
+	/* Couleur verte. */
+	background-color: green;
+}
+
+/* Elément inline intérieur. */
+div.inline-inside {
+	/* Couleur rouge. */
+	background-color: red;
+}
+
+/**************************/
+/*          BLOCK.        */
+/**************************/
+
+/* Eléments block. */
+div.block,
+div.block-inside {
+	/* Affichage block. */
+	display: block;
+}
+
+/* Eléments block extérieur. */
+div.block {
+	/* Couleur bleue. */
+	background-color: blue;
+}
+
+/* Eléments block intérieur. */
+div.block-inside {
+	/* Couleur orange. */
+	background-color: orange;
+}
+
+/**************************/
+/*      INLINE-BLOCK.     */
+/**************************/
+
+/* Eléments inline-block. */
+div.inline-block,
+div.inline-block-inside {
+	/* Affichage inline-block. */
+	display: inline-block;
+}
+
+/* Eléments inline-block sauf dernier. */
+div.inline-block:not(:last-child)  {
+	/* Marge à droite. */
+	margin-right: 15px;
+}
+
+/* Eléments inline-block intérieur. */
+div.inline-block {
+	/* Marge en dessous nulle (pour corriger l'affichage). */
+	margin-top: 0;
+
+	/* Couleur magenta. */
+	background-color: magenta;
+}
+
+/* Eléments inline-block extérieur. */
+div.inline-block-inside {
+	/* Couleur jaune. */
+	background-color: yellow;
+}
