@@ -1,0 +1,63 @@
+/* Corps. */
+body {
+	/* Largeur minimale nulle. */
+	min-width: 0;
+}
+
+/* Titre de l'en-tête. */
+header h1 {
+	/* Marge à gauche (pour corriger l'affichage avec le bouton). */
+	margin-left: 60px;
+}
+
+/* Conteneur. */
+#main_cont {
+	/* Marge nulle. */
+	margin: 0;
+
+	/* Largeur minimale nulle. */
+	min-width: 0;
+}
+
+/* Colonnes. */
+.cols {
+	max-width: 100%;
+}
+
+/* Bouton. */
+div.button {
+	/* Position absolue. */
+	position: absolute;
+
+	/* Coordonnées. */
+	left: 20px;
+	top: 20px;
+}
+
+/* Traits du bouton. */
+div.button div {
+	/* Largeur. */
+	width: 35px;
+
+	/* Hauteur. */
+	height: 5px;
+
+	/* Fond noir. */
+	background-color: black;
+
+	/* Marge pour l'espacement des traits. */
+	margin: 6px 0;
+}
+
+/* Menu de navigation. */
+nav {
+	/* Désactiver l'affichage. */
+	display: none;
+}
+
+
+/* Menu de navigation après le bouton survolé. */
+div.button:hover + nav {
+	/* Affichage en block. */
+	display: block;
+}

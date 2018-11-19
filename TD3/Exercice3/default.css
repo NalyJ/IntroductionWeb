@@ -1,0 +1,68 @@
+/* Corps. */
+body {
+	min-width: 1024px;
+}
+
+/* En-tête. */
+header {
+	text-align: center;
+}
+
+/* Menu de navigation. */
+nav {
+	float: left;
+	width: 190px;
+}
+
+/* Pied de page. */
+footer {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+/* Conteneur. */
+#main_cont{
+	margin-left: 200px;
+	max-width: 824px;
+	min-width: 800px;
+	border: 5px solid black;
+	overflow: auto;
+}
+
+/* Colonnes. */
+.cols{
+	float: left;
+	max-width: 255px;
+	margin-right: 15px;
+	margin-left: 10px;
+}
+
+/* Dernière colonne. */
+.lastcol {
+	margin-right: 10px;
+}
+
+/* Media query par rapport à l'écran. */
+@media screen and (min-width: 800px) and (max-width: 1024px) {
+	/* Corps. */
+	body {
+		/* Largeur minimale. */
+		min-width: 800px;
+	}
+
+	/* Conteneur. */
+	#main_cont {
+		/* Largeur minimale : largeur min - marge - bordures. */
+		min-width: 590px;
+
+		/* Largeur maximale : largeur max - marge - bordures. */
+		max-width: 814px;
+	}
+
+	/* Colonnes. */
+	.cols {
+		/* Largeur maximale : largeur max - marge. */
+		max-width: 1014px;
+	}
+}
