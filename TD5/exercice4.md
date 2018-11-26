@@ -19,7 +19,7 @@ Sur un autre terminal, nous envoyons le contenu d'un fichier `texte.txt`
 
 	joaobrilhante@GlaDOS:~$ netcat localhost 1234 < texte.txt
 
-Ainsi, nous reçevons une copie du fichier `texte.txt` :
+Ainsi, nous recevons une copie du fichier `texte.txt` :
 
 	joaobrilhante@GlaDOS:~$ cat texte2.txt
 	Lorem ipsum dolor sit amet
