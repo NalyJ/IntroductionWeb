@@ -22,15 +22,15 @@
 		</body>
 	</html>
 
-Nous constatons que les feuilles de styles, les images, les scripts de la page ne
-sont pas téléchargés par la commande netcat. Il faudrait envoyer une requête pour
-chaque ressource manquante. D'où la valeur ajoutée d'un navigateur qui réalise
+Nous constatons que les feuilles de styles, les images, les scripts... de la page
+ne sont pas téléchargés par la commande `netcat`. Il faudrait envoyer une requête 
+pour chaque ressource manquante. D'où la valeur ajoutée d'un navigateur qui réalise
 cette tâche pour nous et affiche la page web.
 
-En analysant l'en-tête de la réponse, nous constatons que la requête a été acceptée.
-De plus, nous remarquons que le serveur web utilise Apache et nous renvoie un
-texte en html en utilisant un encodage de transfert en blocs permettant de
-transmettre des données sans connaître à l'avance la taille totale des données.
+En analysant l'en-tête de la réponse, nous constatons que la requête a été prise
+en compte. De plus, nous remarquons que le serveur web utilise Apache et nous
+renvoie un texte en html en utilisant un encodage de transfert `chunked` permettant
+de transmettre des données sans connaître à l'avance la taille totale des données.
 
 	joaobrilhante@GlaDOS:~$ netcat www.i3s.unice.fr 80
 	GET /~test/ HTTP/1.1
@@ -75,7 +75,7 @@ transmettre des données sans connaître à l'avance la taille totale des donné
 		</body>
 	</html>
 
-En envoyant une requête au serveur pour une page inexistante, nous recevons une
-page d'erreur. En effet, en analysant l'en-tête de la réponse du serveur, nous
-constatons qu'il y a une erreur permanente. Le serveur n'a pas réussi à trouver
-la ressource demandée.
+Lorsque l'on envoie une requête au serveur pour une page inexistante, nous
+recevons une page d'erreur. En effet, en analysant l'en-tête de la réponse du
+serveur, nous constatons que celui renvoit un code d'erreur permanente `404`.
+Le serveur n'a pas réussi à trouver la ressource demandée.
