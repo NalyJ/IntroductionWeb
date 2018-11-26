@@ -1,5 +1,11 @@
 ## Exercice 3
 
+En utilisant netcat, téléchargez la page d'URL http://www.i3s.unice.fr/~boyenval/.
+Remarquez qu'elle utilise cependant quelques feuilles de style, pourtant celles-ci
+n'ont pas  été téléchargées par votre commande netcat. Déduisez-en la valeur ajoutée
+d'un navigateur Web ! Analysez en détail l'en-tête renvoyée par le  serveur web à I3S.
+Recommencez l'exercice en demandant une page inexistante
+
 	joaobrilhante@GlaDOS:~$ netcat www.i3s.unice.fr 80
 
 	GET /~boyenval/ HTTP/1.1
