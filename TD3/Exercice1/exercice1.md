@@ -1,4 +1,4 @@
-## Exercice 1 :
+## Exercice 1
 
 Comparez le site www.lemonde.fr et mobile.lemonde.fr. Expliquez la différence
 architecturale entre les 2 pages du site.
