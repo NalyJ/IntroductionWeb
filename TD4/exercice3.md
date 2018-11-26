@@ -5,9 +5,9 @@
 - "http" = Protocole de communication HTTP pour communiquer au serveur web.
 - ":" = Séparateur obligatoire.
 - "//" = Chaîne obligatoire pour les protocoles dont la requête comprend un chemin d'accès.
-- "Jojo" = Nom d'utilisateur
+- "Jojo" = Nom d'utilisateur.
 - ":" = Séparateur pour indiquer un mot de passe.
-- "lApIn" = Mot de passe de l'utilisateur.
+- "lApIn" = Mot de passe.
 - "@" = Séparateur terminant les données d'identification.
 - "www" = Sous domaine.
 - "example" = Nom de domaine de deuxième niveau.
