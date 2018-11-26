@@ -1,17 +1,14 @@
 ## Exercice 2
 
 `joaobrilhante@GlaDOS:~$ host www.i3s.unice.fr
-
 www.i3s.unice.fr is an alias for niouze.i3s.unice.fr.
 niouze.i3s.unice.fr has address 134.59.130.2`
 
 `joaobrilhante@GlaDOS:~$ host www.unice.fr
-
 www.unice.fr is an alias for sites.unice.fr.
 sites.unice.fr has address 134.59.204.9`
 
 `joaobrilhante@GlaDOS:~$ host www.mit.edu
-
 www.mit.edu is an alias for www.mit.edu.edgekey.net.
 www.mit.edu.edgekey.net is an alias for e9566.dscb.akamaiedge.net.
 e9566.dscb.akamaiedge.net has address 23.217.237.133
