@@ -12,7 +12,7 @@ Sur un autre terminal, nous envoyons le contenu d'un fichier `texte.txt`
 	Lorem ipsum dolor sit amet
 	To be or not to be that is the question
 
-	joaobrilhante@GlaDOS:~$ netcat [IP_LOCALE] 1234 < texte.txt
+	joaobrilhante@GlaDOS:~$ netcat localhost 1234 < texte.txt
 
 Ainsi, nous reçevons une copie du fichier `texte.txt` :
 
