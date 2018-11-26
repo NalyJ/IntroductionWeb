@@ -72,7 +72,6 @@ transmettre des données sans connaître à l'avance la taille totale des donné
 				</div>
 			</div>
 			...
-		</div>
 		</body>
 	</html>
 
