@@ -15,6 +15,6 @@
 	Date: Mon, 26 Nov 2018 12:09:20 GMT
 	Content-Type: text/plain; charset=utf-8
 
-  Hello, world !
+	Hello, world !
 
-Nous envoyons alors une réponse à la requête du client. Nous commençons par lui indiquer que sa requête a bien été prise en code à l'aide d'un code `200`. Enfin, nous lui envoyons une date et un contenu en précisant qu'il s'agit d'un texte clair.
+Nous envoyons alors une réponse à la requête du client. Nous commençons par lui indiquer que sa requête a bien été prise en compte à l'aide d'un code `200`. Enfin, nous lui envoyons une date et un contenu en précisant qu'il s'agit d'un texte clair.
