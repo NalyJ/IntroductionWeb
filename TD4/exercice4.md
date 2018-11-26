@@ -13,4 +13,4 @@
 	6 packets transmitted, 6 received, 0% packet loss, time 5005ms
 	rtt min/avg/max/mdev = 20.090/102.066/193.850/67.459 ms
 
-Nous constatons que les machines de mes camarades sont accessibles.
+Nous constatons que les machines locales sont accessibles.
