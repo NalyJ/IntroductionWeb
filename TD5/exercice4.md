@@ -1,5 +1,10 @@
 ## Exercice 4
 
+En utilisant deux commandes netcat dans deux terminaux différents, copiez
+un fichier de la  machine cliente sur la machine serveur (en supposant pour
+simplifier qu'il s'agit de la même machine). Cet exercice utilise seulement
+des redirections pour échanger le contenu du fichier.
+
 Sur un terminal, nous ouvrons un serveur local sur le port `1234` et
 nous redirigeons les données reçues vers un fichier `texte2.txt` :
 
