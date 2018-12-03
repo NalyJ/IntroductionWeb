@@ -6,11 +6,9 @@ requête vers `http://localhost:1234/`. Logiquement, vous devriez avoir une requ
 sur le premier serveur netcat. Répondez à la requête et vérifiez maintenant ce
 qui s’affiche dans le 2ème serveur netcat et expliquez ce comportement.
 
-
 Sur un terminal, nous ouvrons un serveur local sur le port `1234`, nous recevons
-une requête `POST` depuis notre navigateur firefox et nous y répondons avec par
-une page web contenant une image se trouvant sur un serveur local sur le port
-`1235` :
+une requête `POST` depuis notre navigateur firefox et nous y répondons par une
+page web contenant une image se trouvant sur un serveur local sur le port `1235` :
 
 	joaobrilhante@GlaDOS:~$ netcat -l 1234
 	POST / HTTP/1.1
@@ -37,7 +35,7 @@ une page web contenant une image se trouvant sur un serveur local sur le port
 
 Sur un autre terminal, nous ouvrons un serveur local sur le port `1235` et nous
 recevons une requête `GET` depuis notre navigateur firefox pour l'image contenu
-dans la page web de la réponse envoyé par serveur local sur le port `1234` au
+dans la page web de la réponse envoyée par serveur local sur le port `1234` au
 navigateur :
 
 	joaobrilhante@GlaDOS:~$ netcat -l 1235
@@ -49,3 +47,8 @@ navigateur :
 	Referer: http://localhost:1234/
 	Accept-Encoding: gzip, deflate, br
 	Accept-Language: fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7
+
+En effet, lorsque notre navigateur firefox reçoit une page web en réponse à une
+requête au premier serveur local, il envoie toutes les requêtes nécessaires à
+l'affichage de cette page web. Notamment, il envoie une requête afin d'obtenir
+l'image se trouvant sur le deuxième serveur local
