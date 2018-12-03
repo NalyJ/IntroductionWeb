@@ -51,4 +51,4 @@ navigateur :
 En effet, lorsque notre navigateur firefox reçoit une page web en réponse à une
 requête au premier serveur local, il envoie toutes les requêtes nécessaires à
 l'affichage de cette page web. Notamment, il envoie une requête afin d'obtenir
-l'image se trouvant sur le deuxième serveur local
+l'image se trouvant sur le deuxième serveur local.

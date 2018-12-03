@@ -1,3 +1,10 @@
+## Exercice 11
+
+Publiez la page web et feuilles de styles de l'exercice 4 du TD3 sur le serveur
+`morag.polytech.unice.fr`, qui sera accessible via l’URL
+`http://users.polytech.unice.fr/~ab123456/dir1/page1.html`, où `ab123456` correspond
+à votre login utilisateur. Vous utiliserez pour cela les commande `ssh` et `scp`.
+
 Nous transférons les fichiers de l'exercice 4 du TD3 via `SSH` sur notre session
 sur le serveur `morag.polytech.unice.fr` :
 

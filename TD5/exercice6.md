@@ -18,4 +18,4 @@ html édité.
 	Accept-Language: fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7
 
 Nous constatons que nous recevons une requête `GET` contenant un paramètre `var`
-de valeur celle inscrite dans le formulaire **dans l'URI demandé**.
+de valeur celle inscrite dans le formulaire **dans l'URI**.
