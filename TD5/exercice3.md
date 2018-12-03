@@ -3,8 +3,8 @@
 En utilisant netcat, téléchargez la page d'URL http://www.i3s.unice.fr/~boyenval/.
 Remarquez qu'elle utilise cependant quelques feuilles de style, pourtant celles-ci
 n'ont pas  été téléchargées par votre commande netcat. Déduisez-en la valeur ajoutée
-d'un navigateur Web ! Analysez en détail l'en-tête renvoyée par le  serveur web à I3S.
-Recommencez l'exercice en demandant une page inexistante
+d'un navigateur Web ! Analysez en détail l'en-tête renvoyée par le  serveur web
+à I3S. Recommencez l'exercice en demandant une page inexistante.
 
 	joaobrilhante@GlaDOS:~$ netcat www.i3s.unice.fr 80
 
@@ -29,7 +29,7 @@ Recommencez l'exercice en demandant une page inexistante
 	</html>
 
 Nous constatons que les feuilles de styles, les images, les scripts... de la page
-ne sont pas téléchargés par la commande `netcat`. Il faudrait envoyer une requête 
+ne sont pas téléchargés par la commande `netcat`. Il faudrait envoyer une requête
 pour chaque ressource manquante. D'où la valeur ajoutée d'un navigateur qui réalise
 cette tâche pour nous et affiche la page web.
 
