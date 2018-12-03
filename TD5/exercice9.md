@@ -1,4 +1,4 @@
-## Exercice 9
+## Exercice 9
 
 Exécutez 2 fois la commande `netcat` en mode serveur : l'un pour écouter le port
 `1234` et l'autre, le port `1235`. Depuis votre navigateur firefox, exécutez une
