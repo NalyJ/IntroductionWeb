@@ -1,4 +1,4 @@
-## Exercice 1
+## Exercice 1
 
 Lisez le code `Server.java` et expliquez à quoi sert la méthode `debug()`.
 Indiquez également si vous pouvez, et comment si c’est le cas, débugger votre
