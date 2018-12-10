@@ -1,4 +1,4 @@
-## Exercice 2
+## Exercice 2
 
 En vous inspirant du listing 1, programmez la classe `HTTPServer` qui étend la
 classe `Server`, où on aura une méthode `main()` qui ouvre un serveur écoutant
