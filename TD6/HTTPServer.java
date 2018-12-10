@@ -57,23 +57,31 @@ public class HTTPServer extends Server {
 	 * @param port Le port du serveur.
 	 */
 	public HTTPServer(int port) throws IOException {
-		super(port, false);
+		super(port);
+	}
+
+	/**
+	 * Constructeur d'un serveur HTTP.
+	 * @param port Le port du serveur.
+	 */
+	public HTTPServer() throws IOException {
+		super();
 	}
 
 	/**
 	 * Communication du serveur.
 	 */
 	public void communicate() throws IOException {
-		// Autorisation d'une connexion.
-		this.acceptConn();
+		// Autorisation de la connexion.
+		acceptConnection();
 
 		/*// Récupération de la requête du client.
-		String reply = this.readline();
+		String reply = this.readLine();
 
 		// Si la réponse n'est pas nulle.
 		if (reply != null) {
 			// Envoi de la réponse au client.
-			this.writeline(reply);
+			this.writeLine(reply);
 
 			// Réinitialisation de la réponse.
 			reply = null;
@@ -82,9 +90,6 @@ public class HTTPServer extends Server {
 		// Récupération de la requête.
 		String request = getRequest();
 
-		// Affichage de la requête.
-		//.out.println(request);
-
 		// Si la requête n'est pas nulle.
 		if (request != null) {
 			// Réponse à la requête.
@@ -92,7 +97,7 @@ public class HTTPServer extends Server {
 		}
 
 		// Fermeture de la connexion.
-		this.closeConn();
+		closeConnection();
 	}
 
 	/**
@@ -103,62 +108,62 @@ public class HTTPServer extends Server {
 		String output = null;
 
 		// Récupération de l'en-tête.
-		String line = this.readline();
+		String line = readLine();
 
-		// Si l'en-tête est nulle.
-		if (line == null) {
-			// On renvoit la requête.
-			return output;
-		}
+		// Si l'en-tête n'est pas nulle.
+		if (line != null) {
+			// Récupération des paramètres de l'en-tête.
+			String[] header = line.split(" ");
 
-		// Récupération des paramètres de l'en-tête.
-		String[] header = line.split(" ");
+			// Si l'en-tête de la requête admet trois paramètres.
+			if (header.length == 3) {
+				// S'il s'agit d'une requête GET ou POST.
+				if (header[0].equals("GET") || header[0].equals("POST")) {
+					// Ajout de l'en-tête à la requête.
+					output = line + "\n";
 
-		// Si l'en-tête de la requête contient trois paramètres.
-		if (header.length == 3) {
-			// S'il s'agit d'une requête GET ou POST.
-			if (header[0].equals("GET") || header[0].equals("POST")) {
-				// Ajout de l'en-tête à la requête.
-				output = line + "\n";
+					// Initialisation de la lecture.
+					boolean request = true;
 
-				// Initialisation de la lecture.
-				boolean request = true;
+					// Tant que la requête n'est pas terminée.
+					while (request) {
+						// Ligne de requête.
+						line = readLine();
 
-				// Tant que la requête n'est pas terminée.
-				while (request) {
-					// Ligne de requête.
-					line = this.readline();
-
-					// Ligne nulle.
-					if (line == null) {
-						// Requête terminée.
-						request = false;
-					}
-
-					// Ligne vide.
-					else if (line.isEmpty()) {
-						// Ajout d'une ligne vide à la requête.
-						output += "\n";
-
-						// Requête POST.
-						if (header[0].equals("POST")) {
-							// Récupération du corps de la requête.
-							line = readchars(30);
-
-							// Ajout du corps à la requête.
-							output += line;
+						// Ligne nulle.
+						if (line == null) {
+							// Requête terminée.
+							request = false;
 						}
 
-						// Requête terminée.
-						request = false;
-					}
+						// Ligne vide.
+						else if (line.isEmpty()) {
+							// Ajout d'une ligne vide à la requête.
+							output += "\n";
 
-					// Ligne classique.
-					else {
-						// Ajout de la ligne à la requête.
-						output += line + "\n";
+							// Requête POST.
+							if (header[0].equals("POST")) {
+								// Récupération du corps de la requête.
+								line = readChars(30);
+
+								// Ajout du corps à la requête.
+								output += line;
+							}
+
+							// Requête terminée.
+							request = false;
+						}
+
+						// Ligne classique.
+						else {
+							// Ajout de la ligne à la requête.
+							output += line + "\n";
+						}
 					}
 				}
+			} else {
+				// Ligne de la requête.
+				output = line;
 			}
 		}
 
@@ -172,12 +177,12 @@ public class HTTPServer extends Server {
 	 */
 	private void replyRequest(String request) {
 		// En-tête de la réponse.
-		this.writeline("HTTP/1.1 200 OK");
+		writeLine("HTTP/1.1 200 OK");
 
 		// Type de contenu.
-		this.writeline("Content-Type: text/plain; charset=utf-8\n");
+		writeLine("Content-Type: text/plain; charset=utf-8\n");
 
 		// Corps de la réponse.
-		this.writeline("Bien reçu. Au revoir.");
+		writeLine("Bien reçu. Au revoir.");
 	}
 }
