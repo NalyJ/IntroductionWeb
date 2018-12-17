@@ -1,4 +1,4 @@
-## Exercice 1
+## Exercice 1
 
 Dans cette première version de notre serveur, nous allons nous borner à renvoyer
 seulement la date (quelle que soit la requête faite par l’utilisateur).
