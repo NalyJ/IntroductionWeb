@@ -1,7 +1,7 @@
 ## Exercice 3
 
 Si la ressource demandée est `/date` au lieu de `/date/`, vous devez envoyer un
-code réponse `301 Moved Permanently`. Il est obligatoire d’indiquer le paramètre
+code de réponse `301 Moved Permanently`. Il est obligatoire d’indiquer le paramètre
 `Location` avec le bon emplacement de la ressource.
 
 Comment tester avec `netcat` et votre navigateur que votre serveur réponds
@@ -41,7 +41,7 @@ message d'erreur :
 
 	joaobrilhante@GlaDOS:~$ netcat localhost 1234
 	GET /test bbb
-	ccc
+	ccccc
 
 	HTTP/1.1 404 Not Found
 	Content-Type: text/plain
@@ -64,6 +64,19 @@ serveur répond alors à notre requête avec la date actuelle :
 	Connection: close
 
 	lun. 17 12 2018 15:14:35
+
+Nous pouvons essayer d'envoyer une requête contenant un **en-tête `GET` avec les
+trois paramètres requis** pour la ressource `/date`. Nous constatons que le
+serveur répond alors à notre requête avec une erreur `301 Moved Permanently` et
+sans corps de réponse :
+
+	joaobrilhante@GlaDOS:~$ netcat localhost 1234
+	GET /date bbb
+	Host: localhost:1234
+
+	HTTP/1.1 301 Moved Permanently
+	Location: http://localhost:1234/date/
+	Connection: close
 
 Nous pouvons essayer d'envoyer une requête contenant un **en-tête `POST` avec les
 trois paramètres requis** pour une ressource quelconque. Nous constatons que le
@@ -97,19 +110,6 @@ serveur répond alors à notre requête avec la date actuelle :
 	Connection: close
 
 	lun. 17 12 2018 15:15:14
-
-Nous pouvons essayer d'envoyer une requête contenant un **en-tête `GET` avec les
-trois paramètres requis** pour la ressource `/date`. Nous constatons que le
-serveur répond alors à notre requête avec une erreur `301 Moved Permanently` et
-sans corps de réponse :
-
-	joaobrilhante@GlaDOS:~$ netcat localhost 1234
-	GET /date bbb
-	Host: localhost:1234
-
-	HTTP/1.1 301 Moved Permanently
-	Location: http://localhost:1234/date/
-	Connection: close
 
 Nous pouvons essayer d'envoyer une requête contenant un **en-tête `POST` avec les
 trois paramètres requis** pour la ressource `/date`. Nous constatons que le

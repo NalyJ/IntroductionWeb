@@ -122,7 +122,7 @@ public class HTTPServer extends Server {
 					// Ligne vide.
 					else if (line.isEmpty()) {
 						// Requête POST.
-						if (request.getRequestMethod() == 2) {
+						if (request.isPostRequest()) {
 							// Récupération de la taille de la requête.
 							int requestLength = request.getResponseLength();
 
@@ -140,16 +140,16 @@ public class HTTPServer extends Server {
 						String[] content = line.split(" ");
 
 						// Nom de domaine du serveur.
-						if (content[0].equals("Host:")) {
+						if (content[0].startsWith("Host")) {
 							// Définition du nom de domaine du serveur.
 							request.setHost("http://" + content[1]);
 						}
 
 						// Taille du corps de la requête.
-						else if (content[0].equals("Content-Length:")) {
+						else if (content[0].startsWith("Content-Length")) {
 							// Conversion du paramètre en entier.
 							int requestLength = Integer.parseInt(content[1]);
-
+							
 							// Définition de la taille du crops de la requête.
 							request.setRequestLength(requestLength);
 						}

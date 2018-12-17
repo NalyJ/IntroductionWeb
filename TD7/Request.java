@@ -91,6 +91,22 @@ public class Request {
 	}
 
 	/**
+	 * Vérifie s'il s'agit d'une requête GET.
+	 * @return <code>true</code> s'il s'agit d'une requête GET.
+	 */
+	public boolean isGetRequest() {
+		return this.requestMethod == 0;
+	}
+
+	/**
+	 * Vérifie s'il s'agit d'une requête POST.
+	 * @return <code>true</code> s'il s'agit d'une requête POST.
+	 */
+	public boolean isPostRequest() {
+		return this.requestMethod == 1;
+	}
+
+	/**
 	 * Récupère la taille de la requête.
 	 * @return La taille de la requête.
 	 */
@@ -230,14 +246,8 @@ public class Request {
 			this.responseData = getDate();
 		}
 
-		// Ressource déplacée.
-		else if (this.ressourceStatus == 1) {
-			// Message de déplacement.
-			//this.responseData = "301 Moved Permanently";
-		}
-
 		// Ressource non trouvée.
-		else {
+		else if (this.ressourceStatus == -1) {
 			// Message d'erreur.
 			this.responseData = "La ressource '" + ressource + "' est introuvable.";
 		}

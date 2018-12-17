@@ -18,12 +18,11 @@ Sur un terminal, nous ouvrons notre serveur `HTTP` sur le port `1234` :
 Sur un autre terminal, nous pouvons tester les différentes requêtes des clients
 afin de valider notre programme.
 
-Nous pouvons essayer d'envoyer une requête contenant uniquement une ligne nulle.
+Nous pouvons essayer d'envoyer une requête contenant uniquement une **ligne nulle**.
 Nous constatons que le serveur ne répond pas à notre requête :
 
 	joaobrilhante@GlaDOS:~$ netcat localhost 1234
 	^C
-
 
 Nous pouvons essayer d'envoyer une requête contenant uniquement une **ligne**.
 Nous constatons que le serveur ne répond pas à notre requête :

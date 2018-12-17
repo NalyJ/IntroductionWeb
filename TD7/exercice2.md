@@ -1,9 +1,11 @@
 ## Exercice 2
 
 On décide d’être plus restrictif et de gérer la demande des ressources
-non-disponibles. Votre serveur affichera donc la date que si l’URI est « /date/ »
-Dans tous les autres cas, vous renverrez une erreur (code de retour « 404 Not Found »).
-En plus du code d'erreur renvoyé au navigateur, prévoyez d'afficher un message texte « La ressource "uri" est introuvable » (uri = ressource demandée), sans oublier évidemment le paramètre « Content-Length » proprement annoncé.
+non-disponibles. Votre serveur affichera donc la date seulement si l’`URI` est
+`/date/`. Dans tous les autres cas, vous renverrez un code d'erreur `404 Not Found`.
+En plus du code d'erreur renvoyé au navigateur, prévoyez d'afficher un message
+texte `La ressource "URI" est introuvable`, sans oublier évidemment le paramètre
+ `Content-Length` proprement annoncé.
 
 Comment tester avec `netcat` et votre navigateur que votre serveur réponds
 correctement à la requête ? Donnez les captures d’écran prouvant vos tests.
