@@ -1,49 +1,194 @@
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
+/**
+ * Requête.
+ * @author Joao Brilhante.
+ * @version 1.0
+ */
 public class Request {
-	private int requestType;
+	/**
+	 * Le méthode de la requête.
+	 * 0 = Requête GET.
+	 * 1 = Requête POST.
+	 */
+	private int requestMethod;
+
+	/**
+	 * La taille du corps de la requête.
+	 */
+	private int requestLength;
+
+	/**
+	 * Le nom de domaine du serveur.
+	 */
+	private String host;
+
+	/**
+	 * L'URI de la ressource.
+	 */
 	private String ressource;
-	private int ressourceType;
-	private String data;
 
-	public Request(int type, String ressource) {
-		this.requestType = type;
+	/**
+	 * Le statut de la ressource.
+	 * -1 = Ressource non trouvée.
+	 * 0 = Ressource trouvée.
+	 * 1 = Ressource déplacée.
+	 */
+	private int ressourceStatus;
+
+	/**
+	 * Le corps de la réponse.
+	 */
+	private String responseData;
+
+	/**
+	 * Constructeur d'une requête.
+	 * @param requestMethod La méthode de la requête.
+	 * @param ressource L'URI de la ressource.
+	 */
+	public Request(int requestMethod, String ressource) {
+		// Initialisation du type de la requête.
+		this.requestMethod = requestMethod;
+
+		// Initialisation de la taille de la requête.
+		this.requestLength = 0;
+
+		// Initialisation du nom de domaine du serveur.
+		this.host = "";
+
+		// Initialisation de l'URI de la ressource.
 		this.ressource = ressource;
-		this.ressourceType = 0;
-		this.data = "";
+
+		// Initialisation du statut de la ressource.
+		this.ressourceStatus = -1;
+
+		// Initialisation du corps de la réponse.
+		this.responseData = "";
 	}
 
-	public Request(int type) {
-		this(type, "/");
+	/**
+	 * Constructeur d'une requête.
+	 * @param requestMethod La méthode de la requête.
+	 */
+	public Request(int requestMethod) {
+		this(requestMethod, "/");
 	}
 
+	/**
+	 * Constructeur d'une requête.
+	 */
 	public Request() {
 		this(1, "/");
 	}
 
-	public void findRessourceType() {
-		this.ressourceType = 0;
+	/**
+	 * Récupère la méthode de la requête.
+	 * @return La méthode de la requête.
+	 */
+	public int getRequestMethod() {
+		return this.requestMethod;
 	}
 
-	public int getRequestType() {
-		return this.requestType;
+	/**
+	 * Récupère la taille de la requête.
+	 * @return La taille de la requête.
+	 */
+	public int getRequestLength() {
+		return this.requestLength;
 	}
 
-	public int getRessourceType() {
-		return this.ressourceType;
+	/**
+	 * Définit la taille de la requête.
+	 * @param requestLength La taille de la requête.
+	 */
+	public void setRequestLength(int requestLength) {
+		this.requestLength = requestLength;
 	}
 
-	public String getReplyCode() {
+	/**
+	 * Récupère le nom de domaine du serveur.
+ 	* @return Le nom de domaine du serveur.
+	 */
+	public String getHost() {
+		return this.host;
+	}
+
+	/**
+	 * Définit le nom de domaine du serveur.
+	 * @param host Le nom de domaine du serveur.
+	 */
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	/**
+	 * Récupère l'URI de la ressource.
+	 * @return L'URI de la ressource.
+	 */
+	public String getRessource() {
+		return this.ressource;
+	}
+
+	/**
+	 * Récupère le statut de la ressource.
+	 * @return Le statut de la ressource.
+	 */
+	public int getStatus() {
+		return this.ressourceStatus;
+	}
+
+	/**
+	 * Récupère le corps de la réponse.
+	 */
+	public String getResponseData() {
+		return this.responseData;
+	}
+
+	/**
+	 * Recherche et mets à jour le statut de la ressource.
+	 */
+	public void findRessource() {
+		// Ressource trouvée.
+		if (this.ressource.equals("/date/")) {
+			this.ressourceStatus = 0;
+		}
+
+		// Ressource déplacée.
+		else if (this.ressource.equals("/date")) {
+			// Mise à jour du statut de la ressource.
+			this.ressourceStatus = 1;
+
+			// Mise à jour de l'URI de la ressource.
+			this.ressource = "/date/";
+		}
+
+		// Ressource non trouvée.
+		else {
+			this.ressourceStatus = -1;
+		}
+	}
+
+	/**
+	 * Récupère le code de la réponse.
+	 * @return Le code de la réponse.
+	 */
+	public String getResponseCode() {
 		// Initialisation du code de la réponse.
 		String replyCode;
 
-		// Si le type de la ressource est défini.
-		if (ressourceType == 0) {
-			// Requête valide.
+		// Ressource trouvée.
+		if (this.ressourceStatus == 0) {
 			replyCode = "200 OK";
-		} else {
-			// Requête invalide.
+		}
+
+		// Ressource déplacée.
+		else if (this.ressourceStatus == 1) {
+			replyCode = "301 Moved Permanently";
+		}
+
+		// Ressource non trouvée.
+		else {
 			replyCode = "404 Not Found";
 		}
 
@@ -52,50 +197,52 @@ public class Request {
 	}
 
 	/**
-	 * Récupère la date actuelle.
+	 * Récupère la date actuelle formatée.
+	 * @return La date actuelle formatée.
 	 */
 	public String getDate() {
-		// Initialisation d'un formatteur.
-		SimpleDateFormat formatter = new SimpleDateFormat("EE dd MM yyyy HH:mm:ss");
+		// Initialisation du formateur de date.
+		SimpleDateFormat dateFormat = new SimpleDateFormat("EE dd MM yyyy HH:mm:ss");
 
 		// Initialisation de la date.
 		Date date = new Date();
 
-		// On retourne la date.
-		return formatter.format(date);
-	}
-
-	/**
-	 * Récupère le corps de la réponse.
-	 */
-	public String getData() {
-		return this.data;
+		// On retourne la date formatée.
+		return dateFormat.format(date);
 	}
 
 	/**
 	 * Récupère le type du corps de la réponse.
+	 * @return Le type du corps de la réponse.
 	 */
-	public String getMimeType() {
+	public String getResponseType() {
 		return "text/plain";
 	}
 
 	/**
 	 * Récupère la taille du corps de la réponse.
+	 * @return La taille du corps de la réponse.
 	 */
-	public int getContentLength() {
-		// Initialisation de la longueur.
-		int length = 0;
-
-		// Si le type de la ressource est défini.
-		if (ressourceType == 0) {
+	public int getResponseLength() {
+		// Ressource trouvée.
+		if (this.ressourceStatus == 0) {
 			// Récupération de la date.
-			this.data = getDate();
-
-			// Récupération de la longueur.
-			length = this.data.length();
+			this.responseData = getDate();
 		}
 
-		// On renvoit la longueur.
-		return length;
+		// Ressource déplacée.
+		else if (this.ressourceStatus == 1) {
+			// Message de déplacement.
+			//this.responseData = "301 Moved Permanently";
+		}
+
+		// Ressource non trouvée.
+		else {
+			// Message d'erreur.
+			this.responseData = "La ressource '" + ressource + "' est introuvable.";
+		}
+
+		// On renvoit la taille du corps de la réponse.
+		return this.responseData.length();
 	}
 }

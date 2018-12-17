@@ -90,6 +90,7 @@ public class HTTPServer extends Server {
 
 	/**
 	 * Récupère la requête du client.
+	 * @return La requête du client.
 	 */
 	private Request getRequest() throws IOException {
 		// Initialisation de la requête.
@@ -115,23 +116,19 @@ public class HTTPServer extends Server {
 
 					// Ligne nulle.
 					if (line == null) {
-						// Requête terminée.
-						read = false;
+						return null;
 					}
 
 					// Ligne vide.
 					else if (line.isEmpty()) {
-						// Ajout d'une ligne vide à la requête.
-						//output += "\n";
-
 						// Requête POST.
-						if (request.getRequestType() == 2) {
-							// Récupération du corps de la requête.
-							line = readChars(5);
+						if (request.getRequestMethod() == 2) {
+							// Récupération de la taille de la requête.
+							int requestLength = request.getResponseLength();
 
-							// Ajout du corps à la requête.
-							//output += line;
-						//}
+							// Récupération du corps de la requête.
+							line = readChars(requestLength);
+						}
 
 						// Requête terminée.
 						read = false;
@@ -139,13 +136,28 @@ public class HTTPServer extends Server {
 
 					// Ligne classique.
 					else {
-						// Ajout de la ligne à la requête.
-						//output += line + "\n";
+						// Récupération des paramètres de la ligne.
+						String[] content = line.split(" ");
+
+						// Nom de domaine du serveur.
+						if (content[0].equals("Host:")) {
+							// Définition du nom de domaine du serveur.
+							request.setHost("http://" + content[1]);
+						}
+
+						// Taille du corps de la requête.
+						else if (content[0].equals("Content-Length:")) {
+							// Conversion du paramètre en entier.
+							int requestLength = Integer.parseInt(content[1]);
+
+							// Définition de la taille du crops de la requête.
+							request.setRequestLength(requestLength);
+						}
 					}
 				}
 
-				// Définition du type de la ressource.
-				request.findRessourceType();
+				// Recherche de la ressource.
+				request.findRessource();
 			}
 		}
 
@@ -165,21 +177,17 @@ public class HTTPServer extends Server {
 
 		// Si l'en-tête de la requête admet trois paramètres.
 		if (header.length == 3) {
-			// Initialisation du type de la requête.
-			int requestType = 0;
-
-			// S'il s'agit d'une requête GET ou POST.
+			// Requête GET.
 			if (header[0].equals("GET")) {
-				// Requête GET.
-				requestType = 1;
-
-			} else if (header[0].equals("POST")) {
-				// Requête POST.
-				requestType = 2;
+				// Initialisation de la requête.
+				request = new Request(0, header[1]);
 			}
 
-			// Initialisation de la requête.
-			request = new Request(requestType, header[1]);
+			// Requête POST.
+			else if (header[0].equals("POST")) {
+				// Initialisation de la requête.
+				request = new Request(1, header[1]);
+			}
 		}
 
 		// On retourne la requête.
@@ -188,25 +196,41 @@ public class HTTPServer extends Server {
 
 	/**
 	 * Envoie au client l'en-tête de la réponse.
+	 * @param request La requête du client.
 	 */
 	private void replyHeader(Request request) {
 		// Récupération du code de la réponse.
-		String replyCode = request.getReplyCode();
+		String responseCode = request.getResponseCode();
 
 		// En-tête de la réponse.
-		writeLine("HTTP/1.1 " + replyCode);
+		writeLine("HTTP/1.1 " + responseCode);
 
-		// Récupération du type de la réponse.
-		String replyType = request.getMimeType();
+		// Ressource déplacée.
+		if (request.getStatus() == 1) {
+			// Récupération du nom de domaine du serveur.
+			String host = request.getHost();
 
-		// Type de contenu.
-		writeLine("Content-Type: " + replyType);
+			// Récupération de l'URI de la ressource.
+			String ressource = request.getRessource();
 
-		// Récupération de la longueur du corps de la réponse.
-		int replyLength = request.getContentLength();
+			// Chemin d'accès à la ressource.
+			writeLine("Location: " + host + ressource);
+		}
 
-		// Longueur du corps de la réponse.
-		writeLine("Content-Length: " + replyLength);
+		// Ressource non déplacée.
+		else {
+			// Récupération du type de la réponse.
+			String responseType = request.getResponseType();
+
+			// Type de contenu.
+			writeLine("Content-Type: " + responseType);
+
+			// Récupération de la taille du corps de la réponse.
+			int responseLength = request.getResponseLength();
+
+			// Taille du corps de la réponse.
+			writeLine("Content-Length: " + responseLength);
+		}
 
 		// Type de connexion.
 		writeLine("Connection: close\n");
@@ -217,11 +241,14 @@ public class HTTPServer extends Server {
 	 * @param request La requête du client.
 	 */
 	private void replyData(Request request) {
-		// Récupération du corps de la réponse.
-		String data = request.getData();
+		// Ressource non déplacée.
+		if (request.getStatus() != 1) {
+			// Récupération du corps de la réponse.
+			String responseData = request.getResponseData();
 
-		// Corps de la réponse.
-		writeLine(data);
+			// Corps de la réponse.
+			writeLine(responseData);
+		}
 	}
 
 	/**
