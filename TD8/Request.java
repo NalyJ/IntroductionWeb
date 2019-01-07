@@ -43,7 +43,6 @@ public class Request {
 	 * 0 = Ressource trouvée.
 	 * 1 = Ressource déplacée.
 	 * 2 = Ressource fichier trouvée.
-	 * 3 = Ressource dossier trouvée.
 	 */
 	private int ressourceStatus;
 
