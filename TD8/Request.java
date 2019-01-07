@@ -1,8 +1,8 @@
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Map;
 import java.io.*;
-import java.nio.file.*;
 
 /**
  * Requête.
@@ -23,14 +23,14 @@ public class Request {
 	private int requestLength;
 
 	/**
+	 * Le corps de la requête.
+	 */
+	private String requestContent;
+
+	/**
 	 * Le nom de domaine du serveur.
 	 */
 	private String host;
-
-	/**
-	 * Le fichier de la ressource.
-	 */
-	private File file;
 
 	/**
 	 * L'URI de la ressource.
@@ -46,6 +46,11 @@ public class Request {
 	 * 3 = Ressource dossier trouvée.
 	 */
 	private int ressourceStatus;
+
+	/**
+	 * Le fichier de la ressource.
+	 */
+	private File file;
 
 	/**
 	 * Le corps de la réponse.
@@ -74,6 +79,9 @@ public class Request {
 		// Initialisation de la taille de la requête.
 		this.requestLength = 0; // Pas de contenu, par défaut.
 
+		// Initialisation du corps de la requêtes.
+		this.requestContent = "";
+
 		// Initialisation du nom de domaine du serveur.
 		this.host = ""; // Pas de host, par défaut.
 
@@ -90,12 +98,15 @@ public class Request {
 		this.responseType = "text/plain"; // Texte clair, par défaut.
 
 		// Initialisation du tableau de conversion des types.
-		this.mimetypes = new HashMap<>();
+		this.mimetypes = new HashMap<String, String>();
 		this.mimetypes.put("txt", "text/plain");
 		this.mimetypes.put("html", "text/html");
+		this.mimetypes.put("jpeg", "image/jpeg");
 		this.mimetypes.put("jpg", "image/jpeg");
 		this.mimetypes.put("png", "image/png");
+		this.mimetypes.put("mpg", "video/mpeg");
 		this.mimetypes.put("mpeg", "video/mpeg");
+		this.mimetypes.put("mp4", "video/mp4");
 		this.mimetypes.put("pdf", "application/pdf");
 		this.mimetypes.put("css", "text/css");
 	}
@@ -156,6 +167,14 @@ public class Request {
 	}
 
 	/**
+	 * Définit le corps de la requête.
+	 * @param requestContent Le corps de la requête.
+	 */
+	public void setRequestContent(String requestContent) {
+		this.requestContent = requestContent;
+	}
+
+	/**
 	 * Récupère le nom de domaine du serveur.
  	* @return Le nom de domaine du serveur.
 	 */
@@ -203,9 +222,116 @@ public class Request {
 	}
 
 	/**
+	 * Récupère le chemin d'accès au fichier.
+	 * @param path Le chemin d'accès à la ressource.
+	 * @return Le chemin d'accès au fichier.
+	 */
+	private String getFilePath(String path) {
+		// Initialisation du chemin d'accès au fichier.
+		String filePath = path;
+
+		// Si le chemin d'accès commence par un slash.
+		if (filePath.startsWith("/")) {
+			// Suppression du premier caractère.
+			filePath = filePath.substring(1);
+		}
+
+		// Ajout du préfixe du chemin d'accès au fichier.
+		filePath = "./" + filePath;
+
+		// On retourne le chemin d'accès au fichier.
+		return filePath;
+	}
+
+	/**
+	 * Décode les paramètres du corps de la requête.
+	 * @return Le tableau de paramètres du corps de la requête.
+	 */
+	private HashMap<String, String> decodeRequestContent() {
+		// Initialisation du tableau de paramètres.
+		HashMap<String, String> params = new HashMap<String, String>();
+
+		// Récupération des couples de paramètres.
+		String[] paramValues = this.requestContent.split("&");
+
+		// Pour chaque couple de paramètre.
+		for (String paramValue : paramValues) {
+			// Récupération de l'indice et de la valeur.
+			String[] pair = paramValue.split("=");
+
+			// Si le couple de paramètre est complet.
+			if (pair.length == 2) {
+				// Ajout du paramètre.
+				params.put(pair[0], pair[1]);
+			} else {
+				// Ajout de l'indice.
+				params.put(pair[0], null);
+			}
+		}
+
+		// On retourne le tableau de paramètres.
+		return params;
+	}
+
+	/**
+	 * Récupère l'extension du fichier.
+	 * @return L'extension du fichier.
+	 */
+	private String getFileExtension(File file) {
+		// Initialisation de l'extension du fichier.
+		String fileExtension = null;
+
+		// Récupération du nom du fichier.
+		String fileName = file.getName();
+
+		// Récupération de la position du dernier point dans le nom du fichier.
+		int index = fileName.lastIndexOf(".");
+
+		// Si le nom du fichier contient un point.
+		if (index != -1 && index != 0) {
+			// Récupération de l'extension qui suit le point.
+			fileExtension = fileName.substring(index + 1);
+		}
+
+		// On retourne l'extension du fichier.
+		return fileExtension;
+	}
+
+	/**
+	 * Convertit l'extension du fichier en type de la réponse.
+	 * @param fileExtension L'extension du fichier.
+	 * @return Le type de réponse.
+	 */
+	private String convertExtension(String fileExtension) {
+		// Initialisation du type de la réponse.
+		String mimetype = "text/plain";
+
+		// Si le nom du fichier contient une extension.
+		if (fileExtension != null) {
+			// Récupération du type de réponse correspondant à l'extension.
+			String temp = mimetypes.get(fileExtension);
+
+			// Si le type de réponse existe.
+			if (mimetype != null) {
+				// Définition du type de réponse.
+				mimetype = temp;
+			}
+		}
+
+		// On retourne le type de la réponse.
+		return mimetype;
+	}
+
+	/**
 	 * Recherche et mets à jour le statut de la ressource.
 	 */
 	public void findRessource() throws IOException {
+		// Requête POST.
+		if (this.requestMethod == 1) {
+			displayPost();
+			return;
+		}
+
 		// Dossier date.
 		if (this.ressource.equals("/date/")) {
 			findDateFolder();
@@ -219,7 +345,7 @@ public class Request {
 		}
 
 		// Initialisation du chemin d'accès au fichier.
-		String filePath = getFilePath();
+		String filePath = getFilePath(this.ressource);
 
 		// Initialisation du fichier.
 		this.file = new File(filePath);
@@ -242,8 +368,60 @@ public class Request {
 		else {
 			// Ressource non trouvée.
 			this.ressourceStatus = -1;
+
+			// Message d'erreur.
+			this.responseData = "La ressource '" + this.ressource + "' est introuvable.";
 			return;
 		}
+	}
+
+	/**
+	 * Affiche la liste des paramètres reçus par la méthode POST.
+	 */
+	private void displayPost() {
+		// Ressource trouvée.
+		this.ressourceStatus = 0;
+
+		// Définition du type de la réponse.
+		this.responseType = "text/html";
+
+		// Définition du corps de la réponse.
+		this.responseData = "<!DOCTYPE html>\n"
+			+ "<html>\n"
+			+ "\t<head>\n"
+			+ "\t\t<meta charset=\"utf-8\">\n"
+			+ "\t\t<title>Méthode POST</title>\n"
+			+ "\t</head>\n"
+			+ "\t<body>\n"
+			+ "\t\t<h1>Variables et valeurs reçues par la méthode POST</h1>\n"
+			+ "\t\t<pre>\n";
+
+		// Récupération des paramètres du corps de la requête.
+		HashMap<String, String> params = decodeRequestContent();
+
+		// Pour chaque paramètre du corps de la requête.
+		for (Map.Entry<String, String> param : params.entrySet()) {
+			// Si l'indice n'est pas vide.
+			if (!param.getKey().isEmpty()) {
+				// Si la valeur n'est pas nulle.
+				if (param.getValue() != null) {
+					// Ajout du paramètre.
+					this.responseData += "* " + param.getKey() + " = " + param.getValue() + "\n";
+				} else {
+					// Ajout de l'indice du paramètre.
+					this.responseData += "* " + param.getKey() + " (Pas de valeur associée)\n";
+				}
+			} else {
+				// Ajout d'un message d'erreur.
+				this.responseData += "Pas de variables.\n";
+			}
+
+		}
+
+		// Définition du corps de la réponse.
+		this.responseData += "\t\t</pre>\n"
+			+ "\t</body>\n"
+			+ "</html>";
 	}
 
 	/**
@@ -269,46 +447,6 @@ public class Request {
 	}
 
 	/**
-	 * Récupère le chemin d'accès au fichier.
-	 * @return Le chemin d'accès au fichier.
-	 */
-	private String getFilePath() {
-		// Initialisation du chemin d'accès au fichier.
-		String filePath = this.ressource;
-
-		// Si le chemin d'accès commence par un slash.
-		if (filePath.startsWith("/")) {
-			// Suprression du premier caractère.
-			filePath = filePath.substring(1);
-		}
-
-		return filePath;
-	}
-
-	/**
-	 * Récupère l'extension du fichier.
-	 * @return L'extension du fichier.
-	 */
-	private String getFileExtension(File file) {
-		// Initialisation de l'extension du fichier.
-		String fileExtension = null;
-
-		// Récupération du nom du fichier.
-		String fileName = file.getName();
-
-		// Récupération de la position du dernier point dans le nom du fichier.
-		int index = fileName.lastIndexOf(".");
-
-		// Si le nom du fichier contient un point.
-		if (index != -1 && index != 0) {
-			// Récupération de l'extension qui suit le point.
-			fileExtension = fileName.substring(index + 1);
-		}
-
-		return fileExtension;
-	}
-
-	/**
 	 * Recherche un fichier et mets à jour le statut de la ressource.
 	 */
 	private void findFile(File file) throws IOException {
@@ -318,22 +456,15 @@ public class Request {
 		// Initialisation de l'extension du fichier.
 		String fileExtension = getFileExtension(file);
 
-		// Si le nom du fichier contient une extension.
-		if (fileExtension != null) {
-			// Récupération du type de réponse correspond à l'extension.
-			String mimetype = mimetypes.get(fileExtension);
-
-			// Si le type de réponse existe.
-			if (mimetype != null) {
-				this.responseType = mimetype;
-			}
-		}
+		// Définition du type de la réponse à partir de l'extension du fichier.
+		this.responseType = convertExtension(fileExtension);
 	}
 
 	/**
 	 * Recherche un dossier et mets à jour le statut de la ressource.
 	 */
-	private void findDirectory(File file) {
+	private void findDirectory(File file) throws IOException {
+		// Si le chemin ne se termine pas par un slash.
 		if (!this.ressource.endsWith("/")) {
 			// Ressource déplacée.
 			this.ressourceStatus = 1;
@@ -341,21 +472,124 @@ public class Request {
 			// Mise à jour de l'URI de la ressource.
 			this.ressource += "/";
 		} else {
-			String[] extensions = {"html", "pdf", "txt"};
+			// Recherche d'un fichier index.
+			File indexFile = findIndex();
 
-			for (String extension : extensions) {
-				File indexFile = new File("index." + extension);
-
-				if (indexFile.exists()) {
-					this.file = indexFile;
-
-					// Ressource déplacée.
-					this.ressourceStatus = 2;
-					return;
-				}
+			// Si le fichier index existe.
+			if (indexFile != null) {
+				// Affichage du fichier index.
+				displayIndex(indexFile);
+			} else {
+				// Affichage d'une liste des sous-éléments.
+				displayList();
 			}
-			this.ressourceStatus = 0;
 		}
+	}
+
+	/**
+	 * Recherche un fichier index dans le dossier actuel.
+	 * @return Le fichier index s'il existe.
+	 */
+	private File findIndex() throws IOException {
+		// Initialisation du fichier index.
+		File indexFile = null;
+
+		// Définition des extensions des fichiers index.
+		String[] extensions = {"html", "pdf", "txt"};
+
+		// Pour chaque extension des fichiers index.
+		for (String extension : extensions) {
+			// Récupération du chemin d'accès au fichier index.
+			String tempPath = getFilePath(this.ressource);
+
+			// Récupération du fichier index.
+			File tempFile = new File(tempPath + "index." + extension);
+
+			// Si le fichier existe.
+			if (tempFile.exists()) {
+				// Récupération du fichier index.
+				indexFile = tempFile;
+				break;
+			}
+		}
+
+		// On retourne le fichier index.
+		return indexFile;
+	}
+
+	/**
+	 * Affiche le fichier index.
+	 * @param indexFile Le fichier index à afficher.
+	 */
+	private void displayIndex(File indexFile) {
+		// Ressource fichier trouvée.
+		this.ressourceStatus = 2;
+
+		// Définition du fichier de la réponse.
+		this.file = indexFile;
+
+		// Récupération de l'extension du fichier index.
+		String fileExtension = getFileExtension(indexFile);
+
+		// Définition du type de la réponse à partir de l'extension du fichier.
+		this.responseType = convertExtension(fileExtension);
+	}
+
+	/**
+	 * Affiche une liste des éléments du dossier.
+	 */
+	private void displayList() {
+		// Ressource trouvée.
+		this.ressourceStatus = 0;
+
+		// Définition du type de la réponse.
+		this.responseType = "text/html";
+
+		// Définition du corps de la réponse.
+		this.responseData = "<!DOCTYPE html>\n"
+			+ "<html>\n"
+			+ "\t<head>\n"
+			+ "\t\t<meta charset=\"utf-8\">\n"
+			+ "\t\t<title>Index of " + this.ressource + "</title>\n"
+			+ "\t</head>\n"
+			+ "\t<body>\n"
+			+ "\t\t<h1>Index of " + this.ressource + "</h1>\n"
+			+ "\t\t<pre>\n";
+
+		// Récupération du chemin d'accès au dossier.
+		String folderPath = getFilePath(this.ressource);
+
+		// Récupération du dossier.
+		File folder = new File(folderPath);
+
+		// Si le dossier courant n'est pas la racine du serveur.
+		if (!this.ressource.equals("/")) {
+			// Récupération du chemin absolu du dossier parent.
+			String parentPath = folder.getParentFile().getPath().substring(1);
+
+			// Ajout du dossier parent.
+			this.responseData += "* [DIRECTORY] <a href=\"" + parentPath + "/\">..</a>\n";
+		}
+
+		// Pour chaque sous-élément du dossier.
+		for (File fileEntry : folder.listFiles()) {
+			// S'il s'agit d'un dossier.
+			if (fileEntry.isDirectory()) {
+				// Ajout du dossier.
+				this.responseData += "* [DIRECTORY] <a href=\"" + fileEntry.getName() + "/\">" + fileEntry.getName() + "/</a>\n";
+			}
+
+			//  S'il s'agit d'un fichier.
+			else {
+				// Ajout du fichier.
+				this.responseData += "* [FILE] <a href=\"" + fileEntry.getName() + "\">" + fileEntry.getName() + "</a>\n";
+			}
+		}
+
+		// Définition du corps de la réponse.
+		this.responseData += "\t\t</pre>\n"
+			+ "\t</body>\n"
+			+ "</html>";
 	}
 
 	/**
@@ -364,25 +598,25 @@ public class Request {
 	 */
 	public String getResponseCode() {
 		// Initialisation du code de la réponse.
-		String replyCode;
+		String responseCode;
 
 		// Ressource trouvée.
 		if (this.ressourceStatus == 0 || this.ressourceStatus == 2) {
-			replyCode = "200 OK";
+			responseCode = "200 OK";
 		}
 
 		// Ressource déplacée.
 		else if (this.ressourceStatus == 1) {
-			replyCode = "301 Moved Permanently";
+			responseCode = "301 Moved Permanently";
 		}
 
 		// Ressource non trouvée.
 		else {
-			replyCode = "404 Not Found";
+			responseCode = "404 Not Found";
 		}
 
 		// On retourne le code de la réponse.
-		return replyCode;
+		return responseCode;
 	}
 
 	/**
@@ -413,17 +647,13 @@ public class Request {
 	 * @return La taille du corps de la réponse.
 	 */
 	public int getResponseLength() {
-		// Ressource non trouvée.
-		if (this.ressourceStatus == -1) {
-			// Message d'erreur.
-			this.responseData = "La ressource '" + ressource + "' est introuvable.";
-		}
-
-		else if (this.ressourceStatus == 2) {
+		// Ressource fichier trouvée.
+		if (this.ressourceStatus == 2) {
+			// On retourne la taille du fichier.
 			return (int) this.file.length();
 		}
 
-		// On renvoit la taille du corps de la réponse.
+		// On retourne la taille du corps de la réponse.
 		return this.responseData.length();
 	}
 }

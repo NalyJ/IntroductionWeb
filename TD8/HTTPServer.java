@@ -125,10 +125,13 @@ public class HTTPServer extends Server {
 						// Requête POST.
 						if (request.isPostRequest()) {
 							// Récupération de la taille de la requête.
-							int requestLength = request.getResponseLength();
+							int requestLength = request.getRequestLength();
 
 							// Récupération du corps de la requête.
 							line = readChars(requestLength);
+
+							// Définition du corps de la requête.
+							request.setRequestContent(line);
 						}
 
 						// Requête terminée.
