@@ -27,7 +27,8 @@ page web contenant une image se trouvant sur un serveur local sur le port `1235`
 	var=Hello%2C+world+%21
 
 	HTTP/1.1 200 OK
-
+	Content-Type: text/html
+	
 	<html>
 	<head></head>
 	<body><img src="http://localhost:1235/test.jpg"/></body>
