@@ -1,4 +1,6 @@
 ## Exercice 5
+Utilisez la commande `ping` afin de trouver quelques serveurs internet qui répondent
+aux requêtes ping.
 
 	joaobrilhante@GlaDOS:~$ ping www.google.fr
 	PING www.google.fr (216.58.204.99) 56(84) bytes of data.
