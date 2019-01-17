@@ -1,4 +1,6 @@
 ## Exercice 4
+Utilisez la commande `ping` afin de confirmer que les machines de vos camarades sont joignables
+par le réseau. Par défaut, la commande `ping` doit être arrêté avec `Ctrl+C`.
 
 	joaobrilhante@GlaDOS:~$ ping 10.154.121.147
 	PING 10.154.121.147 (10.154.121.147) 56(84) bytes of data.
