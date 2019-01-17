@@ -1,4 +1,8 @@
 ## Exercice 1
+Toute machine connectée au réseau possède une adresse IP associée. Si vous êtes capable de naviguer
+sur Internet c'est que votre machine est connectée au réseau et qu'elle possède une adresse IP.
+Sur Linux, la commande `ifconfig` vous permet de connaître les informations liées aux cartes réseaux
+vues par le système.
 
 	joaobrilhante@GlaDOS:~$ ipconfig
 	...
