@@ -260,10 +260,11 @@ public class HTTPServer extends Server {
 			File file = request.getFile();
 
 			// Récupération du contenu du fichier.
-			byte[] bytes = Files.readAllBytes(Paths.get(file.getPath()));
-
-			// Corps du fichier.
-			write(bytes);
+			//byte[] bytes = Files.readAllBytes(Paths.get(file.getPath()));
+			
+			for (int i = 0; i < file.length(); i++) {
+				write(file.readBytes());
+			}
 		}
 	}
 
