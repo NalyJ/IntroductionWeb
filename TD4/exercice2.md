@@ -4,7 +4,7 @@ permettra à l'application de trouver l'adresse IP de la machine distante et d'i
 une demande de connexion.
 
 a. Utilisez la commande `host` (sous Linux) ou `nslookup` (sous Windows) afin de trouver
-l'adresse IP de la machine `www.i3s.unice.fr`. Ensuite, ouvrez votre navigateur web et
+l'adresse IP de la machine www.i3s.unice.fr. Ensuite, ouvrez votre navigateur web et
 écrivez dans la barre d'adresse l'adresse IP trouvée. Vérifiez que vous téléchargez en
 effet la page web du site.
 
